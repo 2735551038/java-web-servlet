@@ -1,10 +1,12 @@
 package com.asingna.web.servlet;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Enumeration;
 
 import javax.servlet.Servlet;
 import javax.servlet.ServletConfig;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
@@ -41,9 +43,32 @@ public class HelloWorldServlet implements Servlet{
 			String name = names.nextElement();
 			String value = servletConfig.getInitParameter(name);
 			System.out.println("--"+name+":"+value);
-			
 		}
 		
+		ServletContext servletContext = servletConfig.getServletContext();
+		
+		user = servletContext.getInitParameter("gloab_user");
+		System.out.println("context-->"+user);
+		
+		names = servletContext.getInitParameterNames();
+		while(names.hasMoreElements())
+		{
+			String name = names.nextElement();
+			String value = servletContext.getInitParameter(name);
+			System.out.println("context-->"+"--"+name+":"+value);
+		} 
+		
+		//获取应用名称路径 用于拼接路径
+		
+		String contextPath = servletContext.getContextPath();
+		System.out.println(contextPath);
+		
+		ClassLoader classLoader = getClass().getClassLoader();
+		InputStream is = classLoader.getResourceAsStream("jdbc.properties");
+		System.out.println("classloader:"+is);
+		
+		InputStream is2 = servletContext.getResourceAsStream("/WEB-INF/classes/jdbc.properties");
+		System.out.println("servletcontext:" + is2);
 		
 	}
 
