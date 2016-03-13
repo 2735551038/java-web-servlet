@@ -1,15 +1,18 @@
 package com.asingna.web.servlet;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Arrays;
 import java.util.Map;
 
 import javax.servlet.Servlet;
 import javax.servlet.ServletConfig;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import com.sun.org.apache.xalan.internal.xsltc.compiler.sym;
 import com.sun.xml.internal.bind.v2.runtime.unmarshaller.XsiNilLoader.Array;
@@ -72,6 +75,21 @@ public class LoginServlet implements Servlet{
 		System.out.println(httpServletRequest.getRequestURL());
 		
 		System.out.println(httpServletRequest.getServletPath());
+		PrintWriter out = response.getWriter();
+		out.println(httpServletRequest.getServletPath());
+		
+		HttpSession session = httpServletRequest.getSession();
+		ServletContext servletContext = httpServletRequest.getServletContext();
+		
+		
+		ServletConfig config = getServletConfig();
+		
+		//System.out.println(config);
+		//ServletContext context = config.getServletContext();
+		
+		//System.out.println(servletContext == context);
+		
+		
 	}
 
 }

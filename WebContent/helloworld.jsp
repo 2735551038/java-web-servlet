@@ -12,6 +12,11 @@
 	<%
 		HelloWorldServlet helloWorld = new HelloWorldServlet();
 		
+		System.out.println(request.getParameter("name"));
+		
+		System.out.println(response.getClass());
+		System.out.println(response.getLocale());
+		out.println(response.getClass());
 	%>
 </body>
 </html>
